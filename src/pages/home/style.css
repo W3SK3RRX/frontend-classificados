@@ -1,0 +1,65 @@
+/* Body e HTML ocupam 100% da altura para usar flexbox */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  min-height: 100%; /* Garante que o body ocupe a altura total */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout principal */
+.show-container {
+  flex: 1; /* Faz o conteúdo crescer e ocupar o espaço */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #d3d3d3;
+  color: #000000;
+}
+
+/* Main content */
+.main-content {
+  width: 80%; /* Define a largura máxima do conteúdo como 80% */
+  max-width: 1200px; /* Define um limite máximo para larguras maiores */
+  flex: 1; /* Faz o conteúdo ocupar o espaço disponível */
+  margin-top: 5px; /* Distância do conteúdo para o header fixo */
+  padding-top: 5px; /* Padding-top adicionado para os itens abaixo do carrossel */
+  box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+}
+
+/* Grade para os cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas fixas */
+  gap: 20px; /* Espaçamento uniforme entre os cards */
+  margin: 20px; /* Espaçamento externo superior e inferior */
+  padding: 0 10px; /* Espaçamento interno lateral */
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr); /* Ajusta para 2 colunas em telas menores */
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: 1fr; /* Ajusta para 1 coluna em telas muito pequenas */
+    gap: 15px; /* Reduz o espaçamento entre os cards */
+  }
+}
+
+/* Footer fixo ao final */
+.footer {
+  width: 100%;
+  height: 90px; /* Altura fixa do footer */
+  background-color: #1b3097;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: auto; /* Empurra o footer para o final */
+}

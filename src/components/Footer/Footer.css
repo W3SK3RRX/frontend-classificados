@@ -1,0 +1,12 @@
+/* Footer fixo ao final */
+.footer {
+  width: 100%;
+  height: 90px; /* Altura fixa do footer */
+  background-color: #1b3097;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: auto; /* Empurra o footer para o final */
+}

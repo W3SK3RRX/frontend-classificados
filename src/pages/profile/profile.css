@@ -1,0 +1,132 @@
+/* Estilo geral da página */
+.profile-page {
+    width: 80%; /* Define que a largura do conteúdo é 80% da tela */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    padding: 20px 0; /* Espaçamento superior e inferior */
+    padding-top: 90px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* Header do perfil */
+.profile-header {
+    position: relative;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Foto de capa */
+/* Foto de capa */
+.cover-photo {
+    width: 100%;
+    height: 200px;
+    /*background: url('cover-photo.jpg') no-repeat center center;*/
+    background-color: #333;
+    background-size: cover;
+    margin-top: 20px; /* Adiciona espaçamento entre o header e a foto de capa */
+    border-radius: 8px 8px 0 0; /* Arredonda os cantos superiores para consistência */
+}
+
+
+/* Detalhes do perfil */
+.profile-details {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-right: 20px;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-info h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.user-info p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* Conteúdo do perfil */
+.profile-content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-content h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.profile-announcement h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.profile-announcement p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.professional-records {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.professional-records img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .profile-page {
+        width: 90%; /* Aumenta a largura para ocupar mais espaço em telas pequenas */
+    }
+
+    .profile-details {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-picture {
+        margin-bottom: 15px;
+    }
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 70px; /* Ajuste conforme necessário */
+    background-color: rgba(255, 255, 255, 0.9); /* Transparente ou semitransparente */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
