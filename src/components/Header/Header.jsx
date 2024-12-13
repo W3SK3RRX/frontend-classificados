@@ -4,7 +4,6 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext'; // Importa o contexto de autenticação
-import Dropdown_user from '../Dropdown/Dropdown';
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -17,24 +16,25 @@ function Header() {
             <Nav defaultActiveKey="Home" className={`custom-navbar ${menuOpen ? 'open' : ''}`}>
                 <Nav.Item eventKey="logo" className="logo">Rotaclassificados</Nav.Item>
                 <div className="nav-items">
-                    <Nav.Item eventKey="Home">
-                        <Link to='/'>Início</Link>
-                    </Nav.Item>
-                    <Nav.Item eventKey="Sobre">
-                        <Link to="#">Sobre</Link>
-                    </Nav.Item>
+                    <Link to="/" className="rs-nav-item">Início</Link>
                     {user ? (
-                        <Nav.Item>
-                            <Dropdown_user userName={user.name} onLogout={logout} />
-                        </Nav.Item>
+                        <>
+                            <Link to="/profile" className="rs-nav-item">{user.username || "Perfil"}</Link>
+                            <Nav.Item onClick={logout} className="rs-nav-item logout-btn">
+                                Sair
+                            </Nav.Item>
+                        </>
                     ) : (
-                        <Nav.Item eventKey="Auth">
-                            <Link to="/login">Login/Cadastro</Link>
-                        </Nav.Item>
+                        <Link to="/login" className="rs-nav-item">Login/Cadastro</Link>
                     )}
                 </div>
+
             </Nav>
-            <div className="hamburger" onClick={toggleMenu}>
+            <div
+                className="hamburger"
+                onClick={toggleMenu}
+                aria-label="Toggle menu"
+            >
                 <GiHamburgerMenu size={30} color="white" />
             </div>
         </header>

@@ -9,50 +9,71 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+
   useEffect(() => {
     const loadUser = async () => {
       const token = localStorage.getItem('token');
       if (token) {
-        api.defaults.headers.Authorization = `Bearer ${token}`; // Configura o token
+        console.log('Token encontrado:', token); // Verifica se o token existe
+        api.defaults.headers.Authorization = `Bearer ${token}`;
         try {
-          const response = await api.get('/users/me/');
-          if (response.status === 200) {
-            setUser(response.data); // Popula o estado com os dados do usuário
-          } else {
-            logout(); // Se não conseguir pegar os dados do usuário, faça logout
-          }
+          const response = await api.get('/users/minimal_me/');
+          console.log('Resposta da API:', response.data);
+          setUser(response.data);
         } catch (error) {
-          console.error('Erro ao carregar usuário:', error);
+          console.error('Erro ao carregar usuário:', error.response?.data || error.message);
           logout();
         }
+      } else {
+        console.log('Nenhum token encontrado.');
       }
-      setLoading(false); // Deixe de carregar quando terminar a verificação
+      setLoading(false);
     };
 
     loadUser();
   }, []);
 
 
+
   const login = async (email, password) => {
     try {
       const response = await api.post('/users/login/', { email, password });
-      const { token, user: userData } = response.data; // Supondo que o backend retorna `user`
-      localStorage.setItem('token', token);
-      api.defaults.headers.Authorization = `Bearer ${token}`; // Configura o token
-      setUser(userData); // Atualiza o estado com os dados completos do usuário
-      navigate('/');
+      const { access, user: userData } = response.data; // Supondo que o backend retorna "access"
+      localStorage.setItem('token', access);
+      api.defaults.headers.Authorization = `Bearer ${access}`;
+      setUser(userData);
+      navigate('/home');
     } catch (error) {
       console.error('Erro ao fazer login:', error.response?.data || error.message);
-      throw error; // Retorna o erro para ser tratado no componente
+      throw error;
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    api.defaults.headers.Authorization = null; // Remove o token
-    setUser(null);
-    navigate('/login');
+
+  const logout = async () => {
+    const refreshToken = localStorage.getItem('refresh_token');
+
+    if (refreshToken) {
+      try {
+        // Envia o refresh token para a API de logout
+        await api.post('/logout/', { refresh: refreshToken });
+        // Remove os tokens do localStorage
+        localStorage.removeItem('token');
+        localStorage.removeItem('refresh_token');
+        api.defaults.headers.Authorization = null; // Remove o token do header
+        setUser(null);
+        navigate('/login');
+      } catch (error) {
+        console.error('Erro ao realizar logout:', error.response?.data || error.message);
+      }
+    } else {
+      // Caso não haja o refresh token, realiza o logout normalmente
+      localStorage.removeItem('token');
+      setUser(null);
+      navigate('/login');
+    }
   };
+
 
   return (
     <AuthContext.Provider value={{ user, login, logout, loading }}>

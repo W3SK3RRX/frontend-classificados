@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-{/*import './index.css'*/}
+import './index.css';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CustomProvider } from 'rsuite';
