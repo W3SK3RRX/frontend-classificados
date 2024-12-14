@@ -1,0 +1,130 @@
+/* Card_group.css */
+
+/* Estilos para o card de grupo */
+.card-group-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: all 0.3s ease-in-out;
+    margin: 20px;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Efeito de hover para o card */
+.card-group-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo do cabeçalho do card */
+.card-group-card-header {
+    background-color: #000000;
+    color: white;
+    font-size: 1.25rem;
+    padding: 15px;
+    font-weight: bold;
+}
+
+/* Estilo do corpo do card */
+.card-group-card-body {
+    padding: 20px;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Estilo para o preço */
+.card-group-card-price {
+    font-size: 1.5rem;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Estilo do footer */
+.card-group-card-footer {
+    padding: 15px;
+}
+
+/* Estilo do botão personalizado */
+.card-group-card-button {
+    width: 100%;
+    padding: 12px 20px; /* Ajustando o espaçamento dentro do botão */
+    font-size: 1.1rem; /* Tamanho da fonte */
+    font-weight: bold; /* Fonte em negrito */
+    border-radius: 10px; /* Bordas arredondadas */
+    background-color: #cc2e2e; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    transition: all 0.3s ease; /* Transição suave para efeitos de hover */
+}
+
+/* Efeito de hover */
+.card-group-card-button:hover {
+    background-color: #c44636; /* Cor de fundo mais escura no hover */
+    transform: translateY(-2px); /* Eleva o botão levemente */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Adiciona sombra ao botão */
+}
+
+/* Efeito de foco */
+.card-group-card-button:focus {
+    outline: none; /* Remove o contorno padrão */
+    box-shadow: 0 0 5px rgba(163, 13, 13, 0.7); /* Contorno verde para foco */
+}
+
+/* Responsividade - ajusta o tamanho do botão em telas menores */
+@media (max-width: 768px) {
+    .card-group-card-button {
+        font-size: 1rem; /* Tamanho de fonte menor em dispositivos móveis */
+        padding: 10px 18px; /* Ajuste de padding para telas pequenas */
+    }
+}
+
+
+/* Responsividade - ajusta o tamanho do card em telas pequenas */
+@media (max-width: 768px) {
+    .card-group-card {
+        max-width: 90%;
+    }
+
+    .card-group-card-header {
+        font-size: 1.2rem;
+    }
+
+    .card-group-card-body {
+        font-size: 0.9rem;
+    }
+
+    .card-group-card-price {
+        font-size: 1.25rem;
+    }
+}
+
+
+/* Estilo para a lista de benefícios */
+.card-group-card-body ul {
+    list-style: none; /* Remove os marcadores padrão */
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os itens na lista */
+    justify-content: center;
+}
+
+/* Estilo para cada item da lista */
+.benefit-item {
+    display: flex;
+    align-items: center; /* Alinha o ícone e o texto */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+/* Estilo para o ícone */
+.benefit-icon {
+    margin-right: 10px; /* Espaço entre o ícone e o texto */
+    color: #000000; /* Cor do ícone */
+    font-size: 0.8rem; /* Tamanho do ícone */
+}

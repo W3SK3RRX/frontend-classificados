@@ -10,8 +10,20 @@
     left: 0;
     width: 100%;
     z-index: 1000; /* Garante que o header fique acima do conteúdo */
-    height: 60px; /* Ajuste para o tamanho do cabeçalho */
+    height: 80px; /* Altura do cabeçalho */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona sombra para destaque */
+    box-sizing: border-box; /* Garante que o padding não afete a largura */
+}
+
+/* Contêiner dos itens de navegação */
+.nav-items {
+    display: flex;
+    gap: 15px; /* Espaço entre os itens */
+    flex-wrap: nowrap; /* Impede quebra de linha dos itens */
+    overflow: hidden; /* Garante que não haja transbordamento */
+    justify-content: flex-end; /* Alinha à direita */
+    align-items: center; /* Alinha verticalmente ao centro */
+    flex-grow: 1; /* Faz com que os itens de navegação ocupem o espaço restante */
 }
 
 /* Logo alinhada à esquerda */
@@ -20,6 +32,7 @@
     font-weight: bold;
     color: white;
     text-transform: uppercase;
+    margin-right: auto; /* Empurra os itens de navegação para a direita */
 }
 
 /* Estilo geral para os itens do menu */
@@ -30,6 +43,7 @@
     transition: color 0.3s ease-in-out; /* Transição para hover */
 }
 
+/* Hover nos itens do menu */
 .custom-navbar .rs-nav-item:hover {
     color: #e74c3c; /* Vermelho no hover */
 }
@@ -80,18 +94,4 @@
     }
 }
 
-/* Espaçamento para o conteúdo abaixo do header fixo */
-.show-container {
-    margin-top: 60px; /* Garantir que o conteúdo não fique embaixo do cabeçalho */
-}
 
-/* Contêiner dos itens de navegação */
-.nav-items {
-    display: flex;
-    gap: 15px; /* Espaço entre os itens */
-    flex-wrap: nowrap; /* Impede quebra de linha dos itens */
-    max-width: calc(100% - 150px); /* Evita ultrapassar o limite da tela considerando o logo */
-    overflow: hidden; /* Garante que não haja transbordamento */
-    justify-content: flex-end; /* Alinha à direita */
-    align-items: center; /* Alinha verticalmente ao centro */
-}

@@ -1,12 +1,94 @@
-/* Footer fixo ao final */
-.footer {
+/* Estilos do Footer */
+.footer-container {
   width: 100%;
-  height: 90px; /* Altura fixa do footer */
-  background-color: #1b3097;
+  background-color: #000000; /* Fundo preto para o footer */
   color: white;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  padding: 20px 0; /* Espaçamento interno */
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   margin-top: auto; /* Empurra o footer para o final */
+}
+
+/* Estilos para os links */
+.footer-links {
+  margin-bottom: 10px; /* Espaçamento entre os links e o copyright */
+}
+
+.footer-links ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 15px; /* Espaçamento entre os links */
+  flex-wrap: wrap; /* Permite que os links quebrem linha em telas pequenas */
+  justify-content: center; /* Centraliza os links */
+}
+
+.footer-links li {
+  margin: 0;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: normal;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #2ecc71; /* Cor de destaque ao passar o mouse */
+}
+
+/* Estilo do texto do footer */
+.footer {
+  font-size: 0.875rem;
+  text-align: center;
+  margin-top: 10px;
+  background-color: transparent; /* Garantir que o fundo seja transparente */
+  padding: 0; /* Remover qualquer espaçamento extra */
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .footer-container {
+      padding: 15px 0; /* Menos padding em telas médias */
+  }
+
+  .footer-links ul {
+      gap: 10px; /* Menos espaçamento entre os links */
+  }
+
+  .footer {
+      font-size: 0.8rem; /* Texto menor em telas menores */
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+      padding: 10px 0; /* Menos padding em telas pequenas */
+  }
+
+  .footer-links ul {
+      flex-direction: column; /* Coloca os links em coluna */
+      gap: 8px; /* Espaçamento reduzido entre os links */
+  }
+
+  .footer {
+      font-size: 0.75rem; /* Texto ainda menor em telas pequenas */
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+      padding: 8px 0; /* Menos padding em telas muito pequenas */
+  }
+
+  .footer-links ul {
+      gap: 5px; /* Espaçamento ainda menor entre os links */
+  }
+
+  .footer {
+      font-size: 0.7rem; /* Texto bem pequeno em telas muito pequenas */
+  }
 }

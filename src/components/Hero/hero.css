@@ -1,0 +1,124 @@
+/* Estilo do Hero */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+    background: linear-gradient(to bottom, #000000, #ffffff);
+    color: white;
+    min-height: 100vh;
+    box-sizing: border-box;
+    gap: 20px;
+}
+
+/* Conteúdo do Hero */
+.hero-content {
+    flex: 1;
+    max-width: 50%;
+    min-width: 280px;
+}
+
+/* Título do Hero */
+.hero-title {
+    color:rgb(255, 255, 255);
+    font-size: 5vw; /* Usando vw para ajustar conforme a largura da tela */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Subtítulo do Hero */
+.hero-subtitle {
+    font-size: 2vw; /* Usando vw para ajustar conforme a largura da tela */
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.hero-buttons .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #c0392b;
+}
+
+.btn-secondary {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #27ae60;
+}
+
+/* Estilo da imagem */
+.hero-image {
+    flex: 1;
+    /* Ocupar o espaço disponível */
+    max-width: 50%;
+    /* Limita o tamanho em telas grandes */
+    min-width: 280px;
+    /* Evita encolhimento excessivo */
+    display: flex;
+    justify-content: center;
+    /* Centraliza em telas menores */
+    align-items: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    /* Opcional, arredonda os cantos */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column; /* Coloca os elementos em coluna */
+        text-align: center; /* Centraliza o texto */
+        padding: 80px 15px 30px; /* Adiciona padding superior para garantir que o conteúdo não sobreponha */
+        min-height: 60vh; /* Ajusta a altura do Hero em telas menores */
+    }
+
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 20px; /* Espaço entre texto e imagem */
+    }
+
+    .hero-title {
+        font-size: 2rem; /* Reduz o tamanho do título em telas menores */
+        margin-top: 30px; /* Adiciona margem superior ao título para afastar do header */
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem; /* Reduz o tamanho do subtítulo em telas menores */
+    }
+
+    .hero-buttons .btn {
+        padding: 8px 15px;  /* Reduz o padding dos botões */
+        font-size: 0.875rem;  /* Reduz o tamanho da fonte */
+        margin-right: 10px;  /* Diminui o espaçamento entre os botões */
+    }
+
+    .hero-image img {
+        width: 80%;
+        max-width: 300px; /* Limita o tamanho da imagem */
+    }
+}
+
+.hero {
+    margin-top: 0; /* Igual à altura do Header */
+}

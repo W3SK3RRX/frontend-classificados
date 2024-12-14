@@ -1,0 +1,50 @@
+/* Sobre.css */
+
+/* Contêiner principal (para garantir que o footer esteja fixo no final) */
+body, html, .container {
+    height: 100%; /* Garantir que o contêiner ocupe toda a altura da tela */
+    display: flex;
+    flex-direction: column; /* Alinhar os itens em coluna */
+}
+
+/* Estilo para o contêiner de conteúdo */
+.content-wrapper {
+    width: 60%; /* O conteúdo ocupará 60% da tela */
+    margin: 0 auto; /* Centraliza o conteúdo horizontalmente */
+    flex: 1; /* Garante que o conteúdo ocupe o espaço restante antes do footer */
+}
+
+/* Adiciona um espaçamento abaixo do Card_content */
+.card-content-container {
+    margin-bottom: 80px; /* Ajuste o valor conforme necessário */
+}
+
+/* Estilo para o contêiner de cards */
+.card-group-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de igual tamanho */
+    gap: 20px; /* Espaço entre os cards */
+    justify-content: center; /* Centraliza os cards */
+}
+
+/* Responsividade: ajusta para 1 ou 2 colunas em telas menores */
+@media (max-width: 1024px) {
+    .card-group-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+    }
+}
+
+@media (max-width: 768px) {
+    .card-group-container {
+        grid-template-columns: 1fr; /* 1 coluna */
+    }
+
+    .content-wrapper {
+        width: 95%; /* Em telas menores, ocupa 95% da largura */
+    }
+}
+
+/* Aumentar o espaçamento entre o conteúdo e o footer */
+.content-wrapper {
+    margin-bottom: 120px; /* Aumenta o espaço entre o conteúdo e o footer */
+}

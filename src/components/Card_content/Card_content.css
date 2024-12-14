@@ -1,0 +1,53 @@
+/* Estilo geral para o card de conteúdo */
+.card-content-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: all 0.3s ease-in-out;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+/* Efeito de hover para o card */
+.card-content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo do cabeçalho do card */
+.card-content-card-header {
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    padding: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Estilo do corpo do card */
+.card-content-card-body {
+    padding: 20px;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Adiciona borda e padding ao card para diferenciá-lo */
+.card-content-card-body p {
+    margin-bottom: 15px;
+}
+
+/* Responsividade - ajusta o tamanho do card em telas pequenas */
+@media (max-width: 768px) {
+    .card-content-card {
+        max-width: 90%;
+    }
+
+    .card-content-card-header {
+        font-size: 1.2rem;
+    }
+
+    .card-content-card-body {
+        font-size: 0.9rem;
+    }
+}
