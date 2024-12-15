@@ -1,11 +1,14 @@
 /* Estilo geral da página */
 .profile-page {
-    width: 80%; /* Define que a largura do conteúdo é 80% da tela */
-    margin: 0 auto; /* Centraliza horizontalmente */
-    padding: 20px 0; /* Espaçamento superior e inferior */
+    width: 80%;
+    /* Define que a largura do conteúdo é 80% da tela */
+    margin: 0 auto;
+    /* Centraliza horizontalmente */
+    padding: 20px 0;
+    /* Espaçamento superior e inferior */
     padding-top: 90px;
     font-family: 'Poppins', sans-serif;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
 }
 
 /* Header do perfil */
@@ -19,89 +22,171 @@
 }
 
 /* Foto de capa */
-/* Foto de capa */
 .cover-photo {
     width: 100%;
-    height: 200px;
-    /*background: url('cover-photo.jpg') no-repeat center center;*/
+    height: 250px;
     background-color: #333;
     background-size: cover;
-    margin-top: 20px; /* Adiciona espaçamento entre o header e a foto de capa */
-    border-radius: 8px 8px 0 0; /* Arredonda os cantos superiores para consistência */
+    margin-top: 0px;
+    /* Adiciona espaçamento entre o header e a foto de capa */
+    border-radius: 8px 8px 0 0;
+    /* Arredonda os cantos superiores para consistência */
+    position: relative;
+    /* Necessário para posicionamento da foto de perfil */
 }
 
+/* Foto de perfil */
+.profile-picture-container {
+    position: absolute;
+    top: 120px;
+    /* Metade da altura da capa menos metade da altura da foto */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    /* Garante que a foto de perfil fique sobre o restante */
+}
+
+.profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 
 /* Detalhes do perfil */
 .profile-details {
     display: flex;
+    flex-direction: column;
     align-items: center;
     padding: 20px;
     background-color: #fff;
+    margin-top: 80px;
 }
 
-.profile-picture {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 4px solid #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    margin-right: 20px;
-}
-
+/* Nome do usuário */
 .user-info {
-    flex: 1;
+    text-align: center; /* Centraliza o texto dentro deste container */
+    width: 100%; /* Garante que o container ocupe toda a largura disponível */
 }
 
+/* Título do nome */
 .user-info h1 {
-    font-size: 24px;
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
     color: #333;
-    margin-bottom: 10px;
 }
 
-.user-info p {
-    font-size: 14px;
-    color: #555;
-    margin: 5px 0;
-}
 
-/* Conteúdo do perfil */
+/* Estilo para a seção de descrição */
 .profile-content {
     background-color: #fff;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Espaçamento superior */
 }
 
+/* Título da seção */
 .profile-content h2 {
     font-size: 20px;
     color: #333;
     margin-bottom: 15px;
 }
 
-.profile-announcement h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #555;
+/* Estilo dos itens dentro do card */
+.profile-announcement .profile-item {
+    margin-bottom: 15px; /* Espaço entre os itens */
 }
 
-.profile-announcement p {
+.profile-announcement .profile-item h3 {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.profile-announcement .profile-item p {
     font-size: 14px;
     color: #555;
-    margin-bottom: 10px;
+    margin: 0;
 }
 
+/* Certificados - Lista com separação */
+.profile-announcement .profile-item p {
+    display: inline;
+}
+
+.profile-announcement .profile-item p:last-child {
+    margin-right: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .profile-content {
+        padding: 15px; /* Ajuste o padding em telas pequenas */
+    }
+
+    .profile-announcement .profile-item h3 {
+        font-size: 14px; /* Ajuste o tamanho do título para telas menores */
+    }
+
+    .profile-announcement .profile-item p {
+        font-size: 12px; /* Ajuste o tamanho do texto */
+    }
+}
+
+/* Estilo geral da página */
+.profile-page {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+    padding-top: 90px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+}
+
+/* Estilo para a seção de descrição */
+.profile-content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Título da seção */
+.profile-content h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Galeria de Registros Profissionais */
 .professional-records {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px;
-    margin-top: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajuste para colunas flexíveis */
+    gap: 15px; /* Espaçamento entre os itens */
+    margin-top: 20px;
 }
 
-.professional-records img {
-    width: 100%;
+.record-item {
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para o efeito */
+    overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+.record-img {
+    width: 100%; /* Ocupa toda a largura da célula */
     height: auto;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease; /* Efeito de transformação ao passar o mouse */
+}
+
+.record-img:hover {
+    transform: scale(1.05); /* Aumenta a imagem ao passar o mouse */
 }
 
 /* Responsividade */
@@ -110,23 +195,89 @@
         width: 90%; /* Aumenta a largura para ocupar mais espaço em telas pequenas */
     }
 
+    .professional-records {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Ajusta as colunas em telas pequenas */
+    }
+
+    .record-item {
+        margin-bottom: 10px; /* Ajusta o espaço entre os itens */
+    }
+}
+
+
+/* Estilo para a navegação de links */
+.profile-links {
+    margin: 10px 0 20px;
+    /* Espaçamento superior e inferior */
+    display: flex;
+    justify-content: center;
+    /* Centraliza os links */
+    gap: 20px;
+    /* Espaçamento entre os links */
+    font-size: 16px;
+    /* Tamanho do texto */
+}
+
+.profile-links a {
+    display: flex;
+    align-items: center;
+    /* Alinha o ícone com o texto */
+    text-decoration: none;
+    color: #000000;
+    /* Cor azul para links */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.profile-links a:hover {
+    color: #ff0000;
+    /* Cor mais escura ao passar o mouse */
+}
+
+.profile-links svg {
+    font-size: 18px;
+    /* Ajusta o tamanho do ícone */
+}
+
+/* Estilo para o botão de contratação */
+.hire-button {
+    display: block;
+    margin-top: 20px;
+    margin: 20px auto;
+    /* Centraliza o botão */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.hire-button:hover {
+    background-color: #d15e5e;
+}
+
+/* Responsividade para o layout geral */
+@media (max-width: 768px) {
+    .profile-page {
+        width: 90%;
+        /* Aumenta a largura para ocupar mais espaço em telas pequenas */
+    }
+
     .profile-details {
         flex-direction: column;
         text-align: center;
     }
 
-    .profile-picture {
-        margin-bottom: 15px;
+    .profile-picture-container {
+        top: 100px;
+        /* Ajusta a posição da foto para telas menores */
     }
-}
 
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    height: 70px; /* Ajuste conforme necessário */
-    background-color: rgba(255, 255, 255, 0.9); /* Transparente ou semitransparente */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
 }

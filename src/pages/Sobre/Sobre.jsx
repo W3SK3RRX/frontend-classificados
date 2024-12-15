@@ -11,9 +11,9 @@ function Sobre() {
     return (
         <div>
             <Container>
-                <Header>
-                    <Header />
-                </Header>
+                
+                <Header />
+                
                 <Hero />
                 <Content className="content-wrapper">
                     {/* Contêiner do Card_content com espaçamento abaixo */}
