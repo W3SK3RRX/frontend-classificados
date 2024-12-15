@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types'; // Importação para validação de tipos
+import PropTypes from 'prop-types';
 import './Card.css';
 
 function Card({ image, title, description }) {
     return (
-        <div className="card">
+        <div className="card" role="article">
             <img 
-                src={image || 'https://via.placeholder.com/150'} // Exibe uma imagem placeholder se nenhuma for fornecida
+                src={image || 'https://via.placeholder.com/150'} 
                 alt={title || 'Imagem não disponível'} 
                 className="card-image" 
             />
@@ -18,16 +18,14 @@ function Card({ image, title, description }) {
     );
 }
 
-// Validação das props para evitar erros
 Card.propTypes = {
     image: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
 };
 
-// Valores padrão para as props (fallbacks)
 Card.defaultProps = {
-    image: 'https://via.placeholder.com/150', // Imagem padrão
+    image: 'https://via.placeholder.com/150',
     title: 'Título não disponível',
     description: 'Descrição não disponível',
 };

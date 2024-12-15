@@ -46,21 +46,21 @@
 }
 
 .btn-primary {
-    background-color: #e74c3c;
+    background-color: #ff1900;
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #c0392b;
+    background-color: #e79086;
 }
 
 .btn-secondary {
-    background-color: #2ecc71;
+    background-color: #003cff;
     color: white;
 }
 
 .btn-secondary:hover {
-    background-color: #27ae60;
+    background-color: #6d7dd8;
 }
 
 /* Estilo da imagem */

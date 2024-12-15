@@ -1,35 +1,17 @@
-/* Centraliza o Navbar e aplica fundo transparente */
+/* Nav.css */
+
 .navbar-filtros {
-    background-color: transparent;  /* Fundo transparente */
-    border: none;  /* Remove bordas padrão */
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    padding: 10px 0;  /* Ajuste de padding, conforme necessário */
-    position: relative; /* Permite que o Navbar flua com o conteúdo abaixo dele */
-}
-
-/* Estilo para os itens de navegação */
-.navbar-filtros .rs-nav-item {
-    color: #000;  /* Cor do texto, pode ser alterada */
-    padding: 8px 20px;
-    font-size: 1rem;
-}
-
-/* Estilo para o menu suspenso */
-.navbar-filtros .rs-nav-menu {
-    color: #000;  /* Cor do texto no menu suspenso */
-}
-
-/* Estilo para o item ativo */
-.navbar-filtros .rs-nav-item-active {
-    color: #e74c3c; /* Cor do item ativo, pode ser personalizada */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center;   /* Alinha os itens verticalmente */
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0); /* Fundo transparente */
     font-weight: bold;
+    font-size: large;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    /* Para telas menores, o menu pode se tornar mais compacto ou exibir uma barra lateral */
-    .navbar-filtros {
-        padding: 5px 0;  /* Ajuste do padding em telas menores */
-    }
+.navbar-filtros .rs-nav {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os menus */
 }

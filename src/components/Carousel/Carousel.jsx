@@ -1,16 +1,25 @@
-import { Carousel } from 'rsuite';
-import img1 from '../../assets/img/aaa.jpg';
-import img2 from '../../assets/img/bbb.jpg';
-import img3 from '../../assets/img/ccc.jpg';
+import React from "react";
+import { Carousel } from "rsuite";
 
-function Carrossel() {
+const Carrossel = ({ images, autoplay = true, autoplayInterval = 10000, shape = "bar", height = 250 }) => {
     return (
-        <Carousel className="custom-slider">
-            <img src={img1} alt="Imagem 1" height="250" />
-            <img src={img2} alt="Imagem 2" height="250" />
-            <img src={img3} alt="Imagem 3" height="250" />
+        <Carousel 
+            autoplay={autoplay} 
+            autoplayInterval={autoplayInterval} 
+            className="custom-slide" 
+            shape={shape}
+        >
+            {images.map((src, index) => (
+                <img 
+                    key={index} 
+                    src={src} 
+                    height={height} 
+                    alt={`Slide ${index + 1}`} 
+                    style={{ objectFit: 'cover' }}
+                />
+            ))}
         </Carousel>
     );
-}
+};
 
 export default Carrossel;

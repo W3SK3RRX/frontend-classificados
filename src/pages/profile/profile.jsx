@@ -3,7 +3,7 @@ import './profile.css';
 import Header from '../../components/Header/Header'
 import Rodape from '../../components/Footer/Footer';
 import Reviews from '../../components/Reviews/reviews'
-import Profile_carousel from "../../components/Profile_carousel/profile_carousel";
+
 import { Container, Content, Footer, Avatar } from "rsuite";
 
 function Profile() {
@@ -60,7 +60,7 @@ function Profile() {
                             <p><strong>Certificados:</strong> {profile.certificates.join(", ")}</p>
                             <p><strong>Registros Profissionais:</strong></p>
                             <div className="professional-records">
-                                <Profile_carousel />
+                               
                             </div>
                         </div>
                     </div>

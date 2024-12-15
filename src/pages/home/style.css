@@ -1,52 +1,34 @@
-/* Body e HTML ocupam 100% da altura para usar flexbox */
-html, body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  min-height: 100%; /* Garante que o body ocupe a altura total */
-  display: flex;
-  flex-direction: column;
-}
+/* home.css */
 
-/* Layout principal */
-.show-container {
-  flex: 1; /* Faz o conteúdo crescer e ocupar o espaço */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #d3d3d3;
-  color: #000000;
-}
+.container-content {
+    width: 80%;
+    margin: 20px auto; /* Adiciona espaçamento acima e centraliza horizontalmente */
+  }
+  
+  .content-spacing {
+    margin-top: 90px; /* Espaçamento adicional entre o conteúdo e o header */
+  }
+  
 
-/* Main content */
-.main-content {
-  width: 80%; /* Define a largura máxima do conteúdo como 80% */
-  max-width: 1200px; /* Define um limite máximo para larguras maiores */
-  flex: 1; /* Faz o conteúdo ocupar o espaço disponível */
-  margin-top: 5px; /* Distância do conteúdo para o header fixo */
-  padding-top: 5px; /* Padding-top adicionado para os itens abaixo do carrossel */
-  box-sizing: border-box; /* Garante que o padding não aumente a largura total */
-}
+/* home.css */
 
-/* Grade para os cards */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas fixas */
-  gap: 20px; /* Espaçamento uniforme entre os cards */
-  margin: 20px; /* Espaçamento externo superior e inferior */
-  padding: 0 10px; /* Espaçamento interno lateral */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Cria até 3 cards por linha */
+  gap: 16px; /* Espaçamento entre os cards */
+  justify-content: center; /* Centraliza os cards horizontalmente */
+  align-items: start; /* Alinha os cards ao topo, se houver múltiplas linhas */
+  margin-top: 20px; /* Espaçamento adicional acima da grid */
+}
+
+@media (max-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards por linha para telas menores */
+  }
 }
 
 @media (max-width: 768px) {
   .card-grid {
-    grid-template-columns: repeat(2, 1fr); /* Ajusta para 2 colunas em telas menores */
-  }
-}
-
-@media (max-width: 480px) {
-  .card-grid {
-    grid-template-columns: 1fr; /* Ajusta para 1 coluna em telas muito pequenas */
-    gap: 15px; /* Reduz o espaçamento entre os cards */
+    grid-template-columns: 1fr; /* 1 card por linha para telas muito pequenas */
   }
 }
