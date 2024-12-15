@@ -1,10 +1,10 @@
-/* Alterar a cor de fundo do Navbar */
+/* Estilo do cabeçalho */
 .custom-navbar {
     background-color: rgb(0, 0, 0); /* Fundo preto */
     padding: 10px 20px; /* Ajuste no padding */
     display: flex;
-    justify-content: space-between; /* Espaço entre logo e itens */
-    align-items: center; /* Alinhar os itens no centro verticalmente */
+    justify-content: center; /* Centraliza todos os itens */
+    align-items: center; /* Alinha os itens no centro verticalmente */
     position: fixed;
     top: 0;
     left: 0;
@@ -18,30 +18,46 @@
 /* Contêiner dos itens de navegação */
 .nav-items {
     display: flex;
-    gap: 15px; /* Espaço entre os itens */
+    gap: 20px; /* Aumenta o espaço entre os itens */
     flex-wrap: nowrap; /* Impede quebra de linha dos itens */
-    overflow: hidden; /* Garante que não haja transbordamento */
-    justify-content: flex-end; /* Alinha à direita */
-    align-items: center; /* Alinha verticalmente ao centro */
-    flex-grow: 1; /* Faz com que os itens de navegação ocupem o espaço restante */
+    justify-content: center; /* Centraliza os itens de navegação */
+    align-items: center; /* Alinha verticalmente os itens */
 }
 
-/* Logo alinhada à esquerda */
+/* Logo centralizada */
 .custom-navbar .rs-nav-item[eventkey="logo"] {
-    font-size: 2.0rem;
-    font-weight: bold;
+    font-size: 2.0rem; /* Aumenta o tamanho da fonte */
+    font-weight: bold; /* Aplica negrito */
     color: white;
     text-transform: uppercase;
-    margin-right: auto; /* Empurra os itens de navegação para a direita */
+    margin: 0; /* Remove margem para evitar deslocamento */
 }
 
 /* Estilo geral para os itens do menu */
 .custom-navbar .rs-nav-item {
     color: white;
-    padding: 10px 10px;
+    font-size: 1.2rem; /* Aumenta o tamanho da fonte */
+    font-weight: bold; /* Aplica negrito */
+    padding: 12px 15px; /* Ajusta o padding para maior clique */
     text-decoration: none;
     transition: color 0.3s ease-in-out; /* Transição para hover */
 }
+
+/* Estilo para o nome de usuário dentro do menu dropdown */
+.username {
+    font-size: 1.2rem; /* Aumenta o tamanho da fonte */
+    font-weight: bold; /* Aplica negrito */
+    color: white; /* Define a cor branca */
+    padding: 5px 10px; /* Ajusta o padding para melhorar o espaço */
+    display: inline-block; /* Garante que o nome de usuário se comporte como texto inline */
+    transition: color 0.3s ease-in-out; /* Transição suave de cor */
+}
+
+/* Hover no nome de usuário */
+.username:hover {
+    color: #e74c3c; /* Cor vermelha no hover */
+}
+
 
 /* Hover nos itens do menu */
 .custom-navbar .rs-nav-item:hover {
@@ -81,17 +97,15 @@
         display: block;
         width: 100%;
         text-align: left;
-        padding: 10px 20px; /* Padding ajustado para consistência */
+        padding: 15px 20px; /* Padding ajustado para consistência */
         margin-bottom: 10px; /* Espaço entre os links */
     }
 
     /* Mostrar o menu como coluna quando o hambúrguer for clicado */
     .custom-navbar.open {
         flex-direction: column;
-        align-items: flex-start;
-        height: auto; /* Permitir que a altura aumente para acomodar os itens */
+        align-items: center; /* Alinha os itens no centro */
+        height: auto; /* Permite que a altura aumente para acomodar os itens */
         transition: height 0.3s ease-in-out; /* Transição suave */
     }
 }
-
-

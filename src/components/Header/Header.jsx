@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Nav } from 'rsuite';
+import { Nav, Dropdown } from 'rsuite';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import './Header.css';
 import { Link } from 'react-router-dom';
@@ -18,17 +18,25 @@ function Header() {
                 <div className="nav-items">
                     <Link to="/" className="rs-nav-item">Início</Link>
                     {user ? (
-                        <>
-                            <Link to="/profile" className="rs-nav-item">{user.username || "Perfil"}</Link>
-                            <Nav.Item onClick={logout} className="rs-nav-item logout-btn">
+                        <Dropdown
+                            renderToggle={(props, ref) => (
+                                
+                                <div {...props} ref={ref} className="user-menu">
+                                    <span className="username">{user.username || "Perfil"}</span> {/* Personaliza o nome de usuário */}
+                                </div>
+                            )}
+                        >
+                            <Dropdown.Item as={Link} to="/profile">Meu Perfil</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/settings">Configurações</Dropdown.Item>
+                            <Dropdown.Item onClick={logout} className="logout-btn">
                                 Sair
-                            </Nav.Item>
-                        </>
+                            </Dropdown.Item>
+                        </Dropdown>
+
                     ) : (
-                        <Link to="/login" className="rs-nav-item">Login/Cadastro</Link>
+                        <Link to="/login" className="rs-nav-item btn btn-primary">Login/Cadastro</Link>
                     )}
                 </div>
-
             </Nav>
             <div
                 className="hamburger"
@@ -39,6 +47,6 @@ function Header() {
             </div>
         </header>
     );
-};
+}
 
 export default Header;
