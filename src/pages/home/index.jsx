@@ -5,7 +5,8 @@ import Carrossel from "../../components/Carousel/Carousel";
 import Filtros_pesquisa from "../../components/Nav/Nav";
 import Card from '../../components/Card/Card';
 import Loading from '../../components/Loader/Loader';
-import Rodape from '../../components/Footer/Footer'
+import Rodape from '../../components/Footer/Footer';
+import LocationIcon from '@rsuite/icons/Location';
 import './style.css';
 
 function Home() {
@@ -17,20 +18,22 @@ function Home() {
     "https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=Slide+5"
   ];
 
-  const [profiles, setProfiles] = useState([]); // Estado para armazenar os perfis
-  const [loading, setLoading] = useState(true); // Estado para indicar carregamento
+  const [profiles, setProfiles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Função para buscar os dados
     const fetchProfiles = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/perfis/'); // Substitua pela URL da sua API
+        const response = await fetch('http://127.0.0.1:8000/perfis/');
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
         const data = await response.json();
-        setProfiles(data); // Atualiza os perfis
+        setProfiles(data);
       } catch (error) {
         console.error('Erro ao buscar perfis:', error);
       } finally {
-        setLoading(false); // Remove o indicador de carregamento
+        setLoading(false);
       }
     };
 
@@ -54,16 +57,18 @@ function Home() {
                 {profiles.map((profile) => (
                   <Card
                     key={profile.id}
-                    image={profile.image}
-                    title={`${profile.profile_name}`}
-                    description={`${profile.endereco.cidade} - ${profile.endereco.estado}`}
+                    image={profile.foto_logo || "https://via.placeholder.com/150"} // Imagem padrão
+                    title={profile.profile_name || "Nome não disponível"}
+                    description={
+                      `${profile.cidade || "Cidade não disponível"} - ${profile.estado || "Estado não disponível"}`
+                    }
+                    profileId={profile.id} // Ajustado para usar o ID do perfil
                   />
                 ))}
               </div>
             )}
           </Content>
         </Container>
-
       </Content>
       <Footer>
         <Rodape />

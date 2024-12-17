@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Nav, Dropdown } from 'rsuite';
+import { Nav, Dropdown, Button } from 'rsuite';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import './Header.css';
 import { Link } from 'react-router-dom';
@@ -20,7 +20,7 @@ function Header() {
                     {user ? (
                         <Dropdown
                             renderToggle={(props, ref) => (
-                                
+
                                 <div {...props} ref={ref} className="user-menu">
                                     <span className="username">{user.username || "Perfil"}</span> {/* Personaliza o nome de usuário */}
                                 </div>
@@ -34,7 +34,16 @@ function Header() {
                         </Dropdown>
 
                     ) : (
-                        <Link to="/login" className="rs-nav-item btn btn-primary">Login/Cadastro</Link>
+                        <Link
+                            to="/login"
+                            component={Button}
+                            appearance="ghost"
+                            color="red"
+                            className="rs-nav-item"
+                        >
+                            Login/Cadastro
+                        </Link>
+
                     )}
                 </div>
             </Nav>

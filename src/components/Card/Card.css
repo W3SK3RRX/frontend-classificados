@@ -1,48 +1,53 @@
 .card {
-    width: 100%;
-    max-width: 400px; /* Define uma largura máxima para o card */
-    aspect-ratio: 3 / 2;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    background-color: #fff;
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animação suave no hover */
     display: flex;
     flex-direction: column;
-    cursor: pointer; /* Indica que é interativo */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
 }
 
 .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Aumenta o efeito de sombra ao passar o mouse */
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .card-image {
     width: 100%;
-    height: 60%;
+    height: 150px;
     object-fit: cover;
-    border-bottom: 1px solid #ddd;
 }
 
 .card-content {
-    flex: 1;
     padding: 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex-grow: 1;
 }
 
 .card-title {
-    font-size: 1.2rem;
-    margin: 0 0 8px;
-    color: #333;
-    font-weight: 600; /* Destaca o título */
+    font-size: 18px;
+    margin: 0 0 8px 0;
+    font-weight: bold;
 }
 
 .card-description {
-    font-size: 0.875rem;
+    font-size: 14px;
     color: #666;
-    line-height: 1.5;
-    word-wrap: break-word; /* Garante que o texto não ultrapasse os limites do card */
+    margin-bottom: 16px;
+    flex-grow: 1;
+}
+
+.card-button {
+    background-color: #ff0000;
+    align-self: flex-start;
+    margin-top: auto; /* Garante que o botão fique na parte inferior */
+}
+
+.card-button:hover{
+    background-color: #e04848;;
 }

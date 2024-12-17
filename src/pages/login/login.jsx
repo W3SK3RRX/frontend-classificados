@@ -9,8 +9,27 @@ function Login() {
     const [error, setError] = useState(null); // Estado para mensagens de erro
     const { login } = useAuth(); // Usa o contexto de autenticação
 
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
     const handleLogin = async (e) => {
         e.preventDefault(); // Prevenir comportamento padrão do formulário
+
+        // Verificações antes de enviar os dados
+        if (!email || !password) {
+            setError('Por favor, preencha todos os campos.');
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            setError('Insira um e-mail válido.');
+            return;
+        }
+
+        setError(null); // Limpa os erros antes de tentar o login
+
         try {
             await login(email, password); // Chama a função de login do contexto
         } catch (err) {
@@ -27,11 +46,13 @@ function Login() {
                     <input
                         type="email"
                         id="email"
+                        className={error && !validateEmail(email) ? 'error' : ''}
                         placeholder="Digite seu e-mail"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
+
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Senha:</label>

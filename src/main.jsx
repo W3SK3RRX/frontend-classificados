@@ -31,13 +31,14 @@ createRoot(document.getElementById('root')).render(
             <Route path="/profile-signup" element={<ProfileSignup />} />
             {/* Rota protegida */}
             <Route
-              path="/profile"
+              path="/profile/:id"
               element={
                 <PrivateRoute>
                   <Profile />
                 </PrivateRoute>
               }
             />
+
           </Routes>
         </AuthProvider>
       </Router>

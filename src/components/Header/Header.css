@@ -18,15 +18,15 @@
 /* Contêiner dos itens de navegação */
 .nav-items {
     display: flex;
-    gap: 20px; /* Aumenta o espaço entre os itens */
-    flex-wrap: nowrap; /* Impede quebra de linha dos itens */
-    justify-content: center; /* Centraliza os itens de navegação */
+    gap: 20px; /* Espaçamento entre os itens */
     align-items: center; /* Alinha verticalmente os itens */
+    justify-content: center; /* Distribui igualmente os itens */
 }
+
 
 /* Logo centralizada */
 .custom-navbar .rs-nav-item[eventkey="logo"] {
-    font-size: 2.0rem; /* Aumenta o tamanho da fonte */
+    font-size: 1rem; /* Aumenta o tamanho da fonte */
     font-weight: bold; /* Aplica negrito */
     color: white;
     text-transform: uppercase;
@@ -36,7 +36,7 @@
 /* Estilo geral para os itens do menu */
 .custom-navbar .rs-nav-item {
     color: white;
-    font-size: 1.2rem; /* Aumenta o tamanho da fonte */
+    font-size: 1rem; /* Aumenta o tamanho da fonte */
     font-weight: bold; /* Aplica negrito */
     padding: 12px 15px; /* Ajusta o padding para maior clique */
     text-decoration: none;
@@ -45,7 +45,7 @@
 
 /* Estilo para o nome de usuário dentro do menu dropdown */
 .username {
-    font-size: 1.2rem; /* Aumenta o tamanho da fonte */
+    font-size: 1rem; /* Aumenta o tamanho da fonte */
     font-weight: bold; /* Aplica negrito */
     color: white; /* Define a cor branca */
     padding: 5px 10px; /* Ajusta o padding para melhorar o espaço */
@@ -55,18 +55,17 @@
 
 /* Hover no nome de usuário */
 .username:hover {
-    color: #e74c3c; /* Cor vermelha no hover */
+    color: #ff9084; /* Cor vermelha no hover */
 }
-
 
 /* Hover nos itens do menu */
 .custom-navbar .rs-nav-item:hover {
-    color: #e74c3c; /* Vermelho no hover */
+    color: #ff9084; /* Vermelho no hover */
 }
 
 /* Cor do item ativo */
 .custom-navbar .rs-nav-item-active {
-    color: #e74c3c; /* Vermelho */
+    color: #ff9084; /* Vermelho */
     font-weight: bold;
 }
 

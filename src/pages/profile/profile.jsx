@@ -57,7 +57,7 @@ function Profile() {
 
                                 {/* Links para seções */}
                                 <div className="profile-links">
-                                    <a href="#services">
+                                    <a href="#services-offered">
                                         <SearchDataLiveIcon style={{ marginRight: '8px' }} />
                                         Serviços
                                     </a>

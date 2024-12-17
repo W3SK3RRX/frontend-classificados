@@ -6,12 +6,14 @@
     min-height: 100vh;
     background-color: #f0f0f0;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 h1 {
     color: #333;
     margin-bottom: 20px;
     font-family: "Poppins", sans-serif;
+    text-align: center;
 }
 
 .login-form {
@@ -21,6 +23,7 @@ h1 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
+    box-sizing: border-box;
 }
 
 .form-group {
@@ -38,12 +41,13 @@ input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .login-button {
     width: 100%;
     padding: 10px;
-    background-color: rgb(27, 48, 151);
+    background-color: rgb(0, 0, 0);
     color: white;
     font-size: 16px;
     border: none;
@@ -53,7 +57,7 @@ input {
 }
 
 .login-button:hover {
-    background-color: #1380c9;
+    background-color: #f53b3b;
 }
 
 .login-links {
@@ -63,7 +67,7 @@ input {
 
 .forgot-password {
     display: block;
-    color: rgb(27, 48, 151); ;
+    color: rgb(243, 52, 52);
     text-decoration: none;
     font-size: 14px;
     margin-bottom: 10px;
@@ -78,11 +82,68 @@ input {
 }
 
 .no-account a {
-    color: rgb(27, 48, 151);
+    color: rgb(243, 52, 52);
     text-decoration: none;
     font-weight: bold;
 }
 
 .no-account a:hover {
     text-decoration: underline;
+}
+
+input.error {
+    border-color: red;
+    background-color: #ffe6e6;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 10px;
+    }
+
+    .login-form {
+        padding: 15px;
+    }
+
+    input {
+        padding: 8px;
+    }
+
+    .login-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    .login-form {
+        padding: 10px;
+        border-radius: 6px;
+    }
+
+    .login-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .forgot-password, .no-account {
+        font-size: 12px;
+    }
 }

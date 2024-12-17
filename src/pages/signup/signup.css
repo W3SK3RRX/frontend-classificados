@@ -9,8 +9,10 @@
 }
 
 h1 {
+    font-size: 30px;
     color: #333;
     margin-bottom: 20px;
+    font-family: "Poppins", sans-serif;
 }
 
 .signup-form {
@@ -42,7 +44,7 @@ input {
 .signup-button {
     width: 100%;
     padding: 10px;
-    background-color: rgb(27, 48, 151);
+    background-color: rgb(0, 0, 0);
     color: white;
     font-size: 16px;
     border: none;
@@ -52,24 +54,36 @@ input {
 }
 
 .signup-button:hover {
-    background-color: #1380c9;
+    background-color: #ff0000;
 }
 
-.signup-links {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.already-account {
+.error {
+    color: red;
     font-size: 14px;
+    margin-bottom: 10px;
 }
 
-.already-account a {
-    color: rgb(27, 48, 151);
-    text-decoration: none;
-    font-weight: bold;
+/* Responsividade */
+@media (max-width: 768px) {
+    .signup-form {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
 }
 
-.already-account a:hover {
-    text-decoration: underline;
+@media (max-width: 480px) {
+    .signup-form {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    input {
+        padding: 8px;
+    }
 }
