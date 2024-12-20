@@ -14,6 +14,7 @@ import Login from './pages/login/login';
 import Signup from './pages/signup/signup';
 import ForgotPassword from './pages/forgotpassword/forgotpassword';
 import ProfileSignup from './pages/profilesignup/profilesignup';
+import Myprofile from './pages/myprofile/Myprofile';
 import Profile from './pages/profile/profile';
 
 createRoot(document.getElementById('root')).render(
@@ -35,6 +36,14 @@ createRoot(document.getElementById('root')).render(
               element={
                 <PrivateRoute>
                   <Profile />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/my_profile/:id"
+              element={
+                <PrivateRoute>
+                  <Myprofile />
                 </PrivateRoute>
               }
             />

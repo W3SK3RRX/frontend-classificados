@@ -3,7 +3,7 @@
     background-color: rgb(0, 0, 0); /* Fundo preto */
     padding: 10px 20px; /* Ajuste no padding */
     display: flex;
-    justify-content: center; /* Centraliza todos os itens */
+    justify-content: space-evenly; /*entraliza todos os itens */
     align-items: center; /* Alinha os itens no centro verticalmente */
     position: fixed;
     top: 0;
@@ -23,6 +23,17 @@
     justify-content: center; /* Distribui igualmente os itens */
 }
 
+/* Estilo para o nome de usuário no menu suspenso */
+.user-menu {
+    display: flex;
+    align-items: center; /* Garante alinhamento vertical */
+    color: white; /* Define a cor branca */
+    font-size: 1rem; /* Ajusta o tamanho da fonte */
+    font-weight: bold; /* Aplica negrito */
+    padding: 12px 15px; /* Ajusta o espaçamento */
+    text-decoration: none; /* Remove sublinhado */
+    transition: color 0.3s ease-in-out; /* Transição para hover */
+}
 
 /* Logo centralizada */
 .custom-navbar .rs-nav-item[eventkey="logo"] {
@@ -35,6 +46,8 @@
 
 /* Estilo geral para os itens do menu */
 .custom-navbar .rs-nav-item {
+    display: flex;
+    align-items: center; /* Garante alinhamento vertical */
     color: white;
     font-size: 1rem; /* Aumenta o tamanho da fonte */
     font-weight: bold; /* Aplica negrito */
@@ -55,19 +68,14 @@
 
 /* Hover no nome de usuário */
 .username:hover {
-    color: #ff9084; /* Cor vermelha no hover */
+    color: #ff1900; /* Cor vermelha no hover */
 }
 
 /* Hover nos itens do menu */
 .custom-navbar .rs-nav-item:hover {
-    color: #ff9084; /* Vermelho no hover */
+    color: #fc1900; /* Vermelho no hover */
 }
 
-/* Cor do item ativo */
-.custom-navbar .rs-nav-item-active {
-    color: #ff9084; /* Vermelho */
-    font-weight: bold;
-}
 
 /* Estilo para o menu hambúrguer */
 .hamburger {
@@ -92,11 +100,12 @@
     }
 
     /* Mostrar os itens do menu quando o estado 'open' for ativado */
-    .custom-navbar.open .rs-nav-item {
-        display: block;
-        width: 100%;
-        text-align: left;
-        padding: 15px 20px; /* Padding ajustado para consistência */
+    .custom-navbar.open .rs-nav-item,
+    .custom-navbar.open .user-menu {
+        display: block; /* Exibe os itens como bloco */
+        width: 100%; /* Itens ocupam 100% da largura */
+        text-align: left; /* Alinha os itens à esquerda */
+        padding: 15px 20px; /* Ajuste no padding */
         margin-bottom: 10px; /* Espaço entre os links */
     }
 

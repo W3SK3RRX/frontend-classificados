@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Nav, Dropdown, Button } from 'rsuite';
+import { Nav, Button } from 'rsuite';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import './Header.css';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext'; // Importa o contexto de autenticação
+import { useAuth } from '../../contexts/AuthContext';
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
-    const { user, logout } = useAuth(); // Obtém usuário e função de logout do contexto
+    const { user, logout } = useAuth();
 
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -18,21 +18,14 @@ function Header() {
                 <div className="nav-items">
                     <Link to="/" className="rs-nav-item">Início</Link>
                     {user ? (
-                        <Dropdown
-                            renderToggle={(props, ref) => (
-
-                                <div {...props} ref={ref} className="user-menu">
-                                    <span className="username">{user.username || "Perfil"}</span> {/* Personaliza o nome de usuário */}
-                                </div>
-                            )}
+                        <Nav.Menu
+                            title={<span className="username">{user.username || "Perfil"}</span>}
+                            className="user-menu"
                         >
-                            <Dropdown.Item as={Link} to="/profile">Meu Perfil</Dropdown.Item>
-                            <Dropdown.Item as={Link} to="/settings">Configurações</Dropdown.Item>
-                            <Dropdown.Item onClick={logout} className="logout-btn">
-                                Sair
-                            </Dropdown.Item>
-                        </Dropdown>
-
+                            <Nav.Item as={Link} to={`/my_profile/${user.id}`}>Meu Perfil</Nav.Item>
+                            <Nav.Item as={Link} to="/settings">Configurações</Nav.Item>
+                            <Nav.Item onClick={logout} className="logout-btn">Sair</Nav.Item>
+                        </Nav.Menu>
                     ) : (
                         <Link
                             to="/login"
@@ -43,7 +36,6 @@ function Header() {
                         >
                             Login/Cadastro
                         </Link>
-
                     )}
                 </div>
             </Nav>

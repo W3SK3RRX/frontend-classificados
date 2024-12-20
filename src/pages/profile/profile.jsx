@@ -3,7 +3,6 @@ import './profile.css';
 import Header from '../../components/Header/Header';
 import Rodape from '../../components/Footer/Footer';
 import Reviews from '../../components/Reviews/reviews';
-import Card_content from "../../components/Card_content/Card_content";
 import SearchDataLiveIcon from '@rsuite/icons/SearchDataLive';
 import MediaIcon from '@rsuite/icons/Media';
 import ReviewIcon from '@rsuite/icons/Review';
