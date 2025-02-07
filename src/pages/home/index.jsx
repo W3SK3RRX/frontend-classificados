@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Container, Content, Footer } from 'rsuite';
 import Header from '../../components/Header/Header';
 import Carrossel from "../../components/Carousel/Carousel";
-import Filtros_pesquisa from "../../components/Nav/Nav";
+import FiltrosPesquisa from "../../components/Nav/Nav";
 import Card from '../../components/Card/Card';
 import Loading from '../../components/Loader/Loader';
 import Rodape from '../../components/Footer/Footer';
-import LocationIcon from '@rsuite/icons/Location';
 import './style.css';
 
 function Home() {
@@ -45,8 +44,7 @@ function Home() {
       <Header />
       <Content className="container-content content-spacing">
         <Carrossel images={images} autoplay={true} autoplayInterval={10000} height={300} />
-
-        <Filtros_pesquisa />
+        <FiltrosPesquisa />
 
         <Container className="sub-content">
           <Content>
@@ -54,17 +52,19 @@ function Home() {
               <Loading />
             ) : (
               <div className="card-grid">
-                {profiles.map((profile) => (
-                  <Card
-                    key={profile.id}
-                    image={profile.foto_logo || "https://via.placeholder.com/150"} // Imagem padrão
-                    title={profile.profile_name || "Nome não disponível"}
-                    description={
-                      `${profile.cidade || "Cidade não disponível"} - ${profile.estado || "Estado não disponível"}`
-                    }
-                    profileId={profile.id} // Ajustado para usar o ID do perfil
-                  />
-                ))}
+                {profiles.length > 0 ? (
+                  profiles.map((profile) => (
+                    <Card
+                      key={profile.id}
+                      image={profile.foto_logo || "https://via.placeholder.com/150"}
+                      title={profile.profile_name || "Nome não disponível"}
+                      description={`${profile.endereco?.cidade || "Cidade não disponível"} - ${profile.endereco?.estado || "Estado não disponível"}`}
+                      profileId={String(profile.id)} // Corrigido aqui
+                    />
+                  ))
+                ) : (
+                  <p className="no-results">Nenhum profissional ou empresa encontrado.</p>
+                )}
               </div>
             )}
           </Content>

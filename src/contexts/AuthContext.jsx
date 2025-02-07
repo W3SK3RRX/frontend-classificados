@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     const loadUser = async () => {
       const token = localStorage.getItem('token');
@@ -17,7 +16,8 @@ export const AuthProvider = ({ children }) => {
         console.log('Token encontrado:', token); // Verifica se o token existe
         api.defaults.headers.Authorization = `Bearer ${token}`;
         try {
-          const response = await api.get('/users/minimal_user/');
+          // Altere aqui para /users/me/ para pegar as informações do usuário logado
+          const response = await api.get('/users/me/');
           console.log('Resposta da API:', response.data);
           setUser(response.data);
         } catch (error) {
@@ -33,8 +33,6 @@ export const AuthProvider = ({ children }) => {
     loadUser();
   }, []);
 
-
-
   const login = async (email, password) => {
     try {
       const response = await api.post('/users/login/', { email, password });
@@ -48,9 +46,6 @@ export const AuthProvider = ({ children }) => {
       throw error;
     }
   };
-
-
-
 
   const logout = async () => {
     const refreshToken = localStorage.getItem('refresh_token');
@@ -75,7 +70,6 @@ export const AuthProvider = ({ children }) => {
       navigate('/login');
     }
   };
-
 
   return (
     <AuthContext.Provider value={{ user, login, logout, loading }}>

@@ -32,7 +32,7 @@ function Header() {
                 <Link to="/" className="logo">Rotaclassificados</Link>
                 
                 <nav className={`nav-items ${menuOpen ? 'open' : ''}`}>
-                    {user && <Link to="/" className="nav-link">Início</Link>}
+                    {user && <Link to="/home" className="nav-link">Início</Link>}
                     {user && <Link to="/contracts" className="nav-link">Meus Contratos</Link>}
                     
                     {user ? (

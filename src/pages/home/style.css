@@ -1,34 +1,48 @@
 /* home.css */
 
 .container-content {
-    width: 80%;
-    margin: 20px auto; /* Adiciona espaçamento acima e centraliza horizontalmente */
-  }
-  
-  .content-spacing {
-    margin-top: 90px; /* Espaçamento adicional entre o conteúdo e o header */
-  }
-  
-
-/* home.css */
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Cria até 3 cards por linha */
-  gap: 16px; /* Espaçamento entre os cards */
-  justify-content: center; /* Centraliza os cards horizontalmente */
-  align-items: start; /* Alinha os cards ao topo, se houver múltiplas linhas */
-  margin-top: 20px; /* Espaçamento adicional acima da grid */
+  width: 80%;
+  margin: 20px auto; /* Centraliza e adiciona espaçamento */
 }
 
+.content-spacing {
+  margin-top: 90px; /* Espaçamento entre o header e o conteúdo */
+}
+
+/* Grid de Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ajusta dinamicamente a quantidade de colunas */
+  gap: 20px; /* Espaçamento maior entre os cards */
+  justify-content: center;
+  align-items: start;
+  margin-top: 20px;
+  padding-bottom: 40px; /* Espaço extra para evitar que o último card encoste no rodapé */
+}
+
+/* Estilos para os Cards */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Ajuste responsivo */
 @media (max-width: 1200px) {
   .card-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards por linha para telas menores */
+      grid-template-columns: repeat(2, 1fr); /* 2 colunas para telas médias */
   }
 }
 
 @media (max-width: 768px) {
   .card-grid {
-    grid-template-columns: 1fr; /* 1 card por linha para telas muito pequenas */
+      grid-template-columns: 1fr; /* 1 coluna em telas pequenas */
   }
 }

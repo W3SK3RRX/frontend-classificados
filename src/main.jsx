@@ -19,18 +19,27 @@ import Profile from './pages/profile/profile';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-
     <CustomProvider theme="light">
       <Router>
         <AuthProvider>
           <Routes>
-            <Route path='/' element={<Sobre />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Sobre />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile-signup" element={<ProfileSignup />} />
-            {/* Rota protegida */}
+
+            {/* Rota protegida para Home */}
+            <Route
+              path="/home"
+              element={
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              }
+            />
+
+            {/* Rotas protegidas para perfis */}
             <Route
               path="/profile/:id"
               element={
@@ -47,11 +56,9 @@ createRoot(document.getElementById('root')).render(
                 </PrivateRoute>
               }
             />
-
           </Routes>
         </AuthProvider>
       </Router>
     </CustomProvider>
-
   </StrictMode>
 );
