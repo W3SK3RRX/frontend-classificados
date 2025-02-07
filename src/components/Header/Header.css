@@ -1,119 +1,108 @@
-/* Estilo do cabeçalho */
-.custom-navbar {
-    background-color: rgb(0, 0, 0); /* Fundo preto */
-    padding: 10px 20px; /* Ajuste no padding */
+.header {
+    background-color: #2c3e50;
+    padding: 15px 20px;
     display: flex;
-    justify-content: space-evenly; /*entraliza todos os itens */
-    align-items: center; /* Alinha os itens no centro verticalmente */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Garante que o header fique acima do conteúdo */
-    height: 80px; /* Altura do cabeçalho */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona sombra para destaque */
-    box-sizing: border-box; /* Garante que o padding não afete a largura */
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
-/* Contêiner dos itens de navegação */
+.header-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
 .nav-items {
     display: flex;
-    gap: 20px; /* Espaçamento entre os itens */
-    align-items: center; /* Alinha verticalmente os itens */
-    justify-content: center; /* Distribui igualmente os itens */
+    gap: 20px;
+    align-items: center;
 }
 
-/* Estilo para o nome de usuário no menu suspenso */
-.user-menu {
-    display: flex;
-    align-items: center; /* Garante alinhamento vertical */
-    color: white; /* Define a cor branca */
-    font-size: 1rem; /* Ajusta o tamanho da fonte */
-    font-weight: bold; /* Aplica negrito */
-    padding: 12px 15px; /* Ajusta o espaçamento */
-    text-decoration: none; /* Remove sublinhado */
-    transition: color 0.3s ease-in-out; /* Transição para hover */
-}
-
-/* Logo centralizada */
-.custom-navbar .rs-nav-item[eventkey="logo"] {
-    font-size: 1rem; /* Aumenta o tamanho da fonte */
-    font-weight: bold; /* Aplica negrito */
+.nav-link, .login-btn, .dropdown-btn {
     color: white;
-    text-transform: uppercase;
-    margin: 0; /* Remove margem para evitar deslocamento */
-}
-
-/* Estilo geral para os itens do menu */
-.custom-navbar .rs-nav-item {
-    display: flex;
-    align-items: center; /* Garante alinhamento vertical */
-    color: white;
-    font-size: 1rem; /* Aumenta o tamanho da fonte */
-    font-weight: bold; /* Aplica negrito */
-    padding: 12px 15px; /* Ajusta o padding para maior clique */
     text-decoration: none;
-    transition: color 0.3s ease-in-out; /* Transição para hover */
-}
-
-/* Estilo para o nome de usuário dentro do menu dropdown */
-.username {
-    font-size: 1rem; /* Aumenta o tamanho da fonte */
-    font-weight: bold; /* Aplica negrito */
-    color: white; /* Define a cor branca */
-    padding: 5px 10px; /* Ajusta o padding para melhorar o espaço */
-    display: inline-block; /* Garante que o nome de usuário se comporte como texto inline */
-    transition: color 0.3s ease-in-out; /* Transição suave de cor */
-}
-
-/* Hover no nome de usuário */
-.username:hover {
-    color: #ff1900; /* Cor vermelha no hover */
-}
-
-/* Hover nos itens do menu */
-.custom-navbar .rs-nav-item:hover {
-    color: #fc1900; /* Vermelho no hover */
-}
-
-
-/* Estilo para o menu hambúrguer */
-.hamburger {
-    display: none; /* Ocultar o ícone de hambúrguer em telas grandes */
-    position: absolute;
-    top: 15px; /* Ajuste para a posição do hambúrguer */
-    right: 20px;
+    padding: 10px;
+    font-weight: 500;
     cursor: pointer;
-    z-index: 1100; /* Garante que o ícone do hambúrguer fique acima do cabeçalho */
+    border: none;
+    background: none;
+    font-size: 1rem;
 }
 
-/* Responsividade para telas pequenas */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+/* Estilizando o dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    min-width: 150px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
-    /* Exibir o ícone de hambúrguer em telas pequenas */
+    .nav-items {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #2c3e50;
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .nav-items.open {
+        display: flex;
+    }
+
     .hamburger {
         display: block;
-    }
-
-    /* Esconder os itens do menu em telas pequenas */
-    .custom-navbar .rs-nav-item {
-        display: none;
-    }
-
-    /* Mostrar os itens do menu quando o estado 'open' for ativado */
-    .custom-navbar.open .rs-nav-item,
-    .custom-navbar.open .user-menu {
-        display: block; /* Exibe os itens como bloco */
-        width: 100%; /* Itens ocupam 100% da largura */
-        text-align: left; /* Alinha os itens à esquerda */
-        padding: 15px 20px; /* Ajuste no padding */
-        margin-bottom: 10px; /* Espaço entre os links */
-    }
-
-    /* Mostrar o menu como coluna quando o hambúrguer for clicado */
-    .custom-navbar.open {
-        flex-direction: column;
-        align-items: center; /* Alinha os itens no centro */
-        height: auto; /* Permite que a altura aumente para acomodar os itens */
-        transition: height 0.3s ease-in-out; /* Transição suave */
     }
 }

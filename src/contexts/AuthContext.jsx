@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
         console.log('Token encontrado:', token); // Verifica se o token existe
         api.defaults.headers.Authorization = `Bearer ${token}`;
         try {
-          const response = await api.get('/users/minimal_me/');
+          const response = await api.get('/users/minimal_user/');
           console.log('Resposta da API:', response.data);
           setUser(response.data);
         } catch (error) {
@@ -38,16 +38,18 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await api.post('/users/login/', { email, password });
-      const { access, user: userData } = response.data; // Supondo que o backend retorna "access"
+      const { access, user: userData } = response.data;
       localStorage.setItem('token', access);
       api.defaults.headers.Authorization = `Bearer ${access}`;
-      setUser(userData);
+      setUser({ ...userData }); // Garante que o React detecte a mudança de estado
       navigate('/home');
     } catch (error) {
       console.error('Erro ao fazer login:', error.response?.data || error.message);
       throw error;
     }
   };
+
+
 
 
   const logout = async () => {

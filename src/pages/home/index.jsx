@@ -24,7 +24,7 @@ function Home() {
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/perfis/');
+        const response = await fetch('http://127.0.0.1:8000/perfil-profissional/');
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
         }

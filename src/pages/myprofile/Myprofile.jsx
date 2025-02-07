@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Header from "../../components/Header/Header";
-import Rodape from "../../components/Footer/Footer";
-import './Myprofile.css';
 
-import { Container, Content, Footer, Avatar, Button } from "rsuite";
-
-function Myprofile() {
-
+function MyProfile() {
     const { id } = useParams();
     const [profile, setProfile] = useState(null);
 
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await axios.get(`/api/users/${id}/me/`, {
+                const response = await axios.get(`/users/${id}/me/`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
                     },
@@ -34,23 +28,13 @@ function Myprofile() {
     }
 
     return (
-
-        <Container>
-            <Header />
-            <Content>
-                <div>
-                    <h1>Meu Perfil</h1>
-                    <p><strong>Nome:</strong> {profile.username}</p>
-                    <p><strong>Sobrenome:</strong> {profile.lastname}</p>
-                    <p><strong>E-mail:</strong> {profile.email}</p>
-                </div>
-            </Content>
-            <Footer>
-                <Rodape />
-            </Footer>
-        </Container>
-
-    )
+        <div>
+            <h1>Meu Perfil</h1>
+            <p><strong>Nome:</strong> {profile.username}</p>
+            <p><strong>Sobrenome:</strong> {profile.lastname}</p>
+            <p><strong>E-mail:</strong> {profile.email}</p>
+        </div>
+    );
 }
 
-export default Myprofile;
+export default MyProfile;

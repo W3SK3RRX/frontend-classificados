@@ -1,50 +1,61 @@
-import React, { useState } from 'react';
-import { Nav, Button } from 'rsuite';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import './Header.css';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { GiHamburgerMenu } from 'react-icons/gi';
 import { useAuth } from '../../contexts/AuthContext';
+import './Header.css';
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const { user, logout } = useAuth();
+    const dropdownRef = useRef(null);
 
     const toggleMenu = () => setMenuOpen(!menuOpen);
+    const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+
+    // Fecha o dropdown se clicar fora
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setDropdownOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
         <header className="header">
-            <Nav defaultActiveKey="Home" className={`custom-navbar ${menuOpen ? 'open' : ''}`}>
-                <Nav.Item eventKey="logo" className="logo">Rotaclassificados</Nav.Item>
-                <div className="nav-items">
-                    <Link to="/" className="rs-nav-item">Início</Link>
+            <div className="header-container">
+                <Link to="/" className="logo">Rotaclassificados</Link>
+                
+                <nav className={`nav-items ${menuOpen ? 'open' : ''}`}>
+                    {user && <Link to="/" className="nav-link">Início</Link>}
+                    {user && <Link to="/contracts" className="nav-link">Meus Contratos</Link>}
+                    
                     {user ? (
-                        <Nav.Menu
-                            title={<span className="username">{user.username || "Perfil"}</span>}
-                            className="user-menu"
-                        >
-                            <Nav.Item as={Link} to={`/my_profile/${user.id}`}>Meu Perfil</Nav.Item>
-                            <Nav.Item as={Link} to="/settings">Configurações</Nav.Item>
-                            <Nav.Item onClick={logout} className="logout-btn">Sair</Nav.Item>
-                        </Nav.Menu>
+                        <div className="nav-link dropdown" ref={dropdownRef}>
+                            <button className="dropdown-btn" onClick={toggleDropdown}>
+                                {user.username || "Perfil"}
+                            </button>
+                            {dropdownOpen && (
+                                <div className="dropdown-menu">
+                                    <Link to={`/my_profile/${user.id}`} className="dropdown-item">Meu Perfil</Link>
+                                    <Link to="/settings" className="dropdown-item">Configurações</Link>
+                                    <button onClick={logout} className="dropdown-item logout-btn">Sair</button>
+                                </div>
+                            )}
+                        </div>
                     ) : (
-                        <Link
-                            to="/login"
-                            component={Button}
-                            appearance="ghost"
-                            color="red"
-                            className="rs-nav-item"
-                        >
-                            Login/Cadastro
-                        </Link>
+                        <Link to="/login" className="login-btn">Login/Cadastro</Link>
                     )}
+                </nav>
+
+                <div className="hamburger" onClick={toggleMenu}>
+                    <GiHamburgerMenu size={30} color="white" />
                 </div>
-            </Nav>
-            <div
-                className="hamburger"
-                onClick={toggleMenu}
-                aria-label="Toggle menu"
-            >
-                <GiHamburgerMenu size={30} color="white" />
             </div>
         </header>
     );
