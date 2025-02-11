@@ -13,7 +13,6 @@ function Header() {
     const toggleMenu = () => setMenuOpen(!menuOpen);
     const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
-    // Fecha o dropdown se clicar fora
     useEffect(() => {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -34,6 +33,7 @@ function Header() {
                 <nav className={`nav-items ${menuOpen ? 'open' : ''}`}>
                     {user && <Link to="/home" className="nav-link">Início</Link>}
                     {user && <Link to="/contracts" className="nav-link">Meus Contratos</Link>}
+                    {user && <Link to="/SearchFilters" className="nav-link">Busca Avançada</Link>}
                     
                     {user ? (
                         <div className="nav-link dropdown" ref={dropdownRef}>

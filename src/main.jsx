@@ -12,10 +12,12 @@ import Sobre from './pages/Sobre/Sobre';
 import Home from './pages/home/index';
 import Login from './pages/login/login';
 import Signup from './pages/signup/signup';
+import Payment from './pages/payments/payments';
 import ForgotPassword from './pages/forgotpassword/forgotpassword';
 import ProfileSignup from './pages/profilesignup/profilesignup';
 import Myprofile from './pages/myprofile/Myprofile';
 import Profile from './pages/profile/profile';
+import SearchFilters from './pages/searchfilters/search';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -27,7 +29,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/profile-signup" element={<ProfileSignup />} />
+            <Route path="/pagamento" element={<Payment />} />
 
             {/* Rota protegida para Home */}
             <Route
@@ -35,6 +37,26 @@ createRoot(document.getElementById('root')).render(
               element={
                 <PrivateRoute>
                   <Home />
+                </PrivateRoute>
+              }
+            />
+
+            {/* Rota protegida para busca avançada */}
+            <Route
+              path="/SearchFilters"
+              element={
+                <PrivateRoute>
+                  <SearchFilters />
+                </PrivateRoute>
+              }
+            />
+
+            {/* Rota protegida para cadastrar perfil profissional */}
+            <Route
+              path="/criar-perfil"
+              element={
+                <PrivateRoute>
+                  <ProfileSignup />
                 </PrivateRoute>
               }
             />
