@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import './payments.css';
+import { Container, Content, Footer, Panel, Form, Button, SelectPicker, Loader, Message } from 'rsuite';
+import Header from '../../components/Header/Header';
+import Rodape from '../../components/Footer/Footer';
 
 function Payment() {
     const navigate = useNavigate();
@@ -9,51 +11,88 @@ function Payment() {
     const planId = queryParams.get('plan_id');
 
     const [plan, setPlan] = useState(null);
+    const [user, setUser] = useState(null);
     const [paymentMethod, setPaymentMethod] = useState('credit_card');
     const [cardInfo, setCardInfo] = useState({ cardNumber: '', expiry: '', cvv: '' });
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [subscriptionActive, setSubscriptionActive] = useState(false);
+    const [daysRemaining, setDaysRemaining] = useState(null);
 
-    // Buscar detalhes do plano com base no plan_id
     useEffect(() => {
         if (!planId) {
-            navigate('/signup'); // Se não houver plano, redireciona para o cadastro
+            navigate('/signup');
             return;
         }
 
+        // Buscar detalhes do plano
         fetch(`http://127.0.0.1:8000/plans/${planId}/`)
             .then(response => response.json())
             .then(data => setPlan(data))
             .catch(() => setError('Erro ao carregar os detalhes do plano.'));
-    }, [planId, navigate]);
+
+        // Buscar informações do usuário para verificar assinatura
+        fetch("http://127.0.0.1:8000/subscriptions/subscription_status/", {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.active) {
+                    const expirationDate = new Date(data.end_date);
+                    const today = new Date();
+                    const diffTime = expirationDate - today;
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Converte milissegundos para dias
+
+                    setSubscriptionActive(true);
+                    setDaysRemaining(diffDays);
+                    setUser(data);
+                }
+            })
+            .catch(error => console.error("Erro ao buscar assinatura:", error));
+    }, []);
 
     const handlePayment = async (e) => {
-        e.preventDefault();
+        if (e && typeof e.preventDefault === "function") {
+            e.preventDefault();
+        }
+
         setError(null);
         setLoading(true);
 
         try {
-            // Simulação de pagamento aprovado
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            console.log("Enviando requisição para assinatura...");
+            console.log("Plan ID:", plan.id);
 
-            // Criar assinatura no backend
-            const response = await fetch('http://127.0.0.1:8000/subscriptions/create_subscription/', {
-                method: 'POST',
+            const response = await fetch("http://127.0.0.1:8000/subscriptions/create_subscription/", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
-                body: JSON.stringify({ plan_id: plan.id })
+                body: JSON.stringify({ plan_id: plan.id }),
             });
-            
+
+            const data = await response.json();
 
             if (!response.ok) {
-                throw new Error('Erro ao criar assinatura');
+                if (data.error) {
+                    if (data.error.includes("assinatura ativa") && daysRemaining !== null) {
+                        setSubscriptionActive(true);
+                        setError(`Você já possui uma assinatura ativa. Faltam ${daysRemaining} ${daysRemaining === 1 ? "dia" : "dias"} para expirar.`);
+                    } else {
+                        setError(data.error);
+                    }
+                } else {
+                    throw new Error("Erro ao criar assinatura.");
+                }
+            } else {
+                alert("Pagamento aprovado e assinatura criada!");
+                navigate("/home");
             }
-
-            alert('Pagamento aprovado e assinatura criada!');
-            navigate('/home');
         } catch (error) {
+            console.error("Erro no pagamento:", error);
             setError(error.message);
         } finally {
             setLoading(false);
@@ -62,36 +101,101 @@ function Payment() {
 
 
     return (
-        <div className="payment-container">
-            <h1>Pagamento</h1>
-            {plan ? (
-                <>
-                    <p><strong>Plano escolhido:</strong> {plan.name} - R$ {plan.price}</p>
-                    <form className="payment-form" onSubmit={handlePayment}>
-                        <label>Método de Pagamento:</label>
-                        <select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
-                            <option value="credit_card">Cartão de Crédito</option>
-                            <option value="pix">Pix</option>
-                            <option value="boleto">Boleto</option>
-                        </select>
-                        {paymentMethod === 'credit_card' && (
-                            <div>
-                                <label>Número do Cartão:</label>
-                                <input type="text" value={cardInfo.cardNumber} onChange={(e) => setCardInfo({ ...cardInfo, cardNumber: e.target.value })} required />
-                                <label>Validade:</label>
-                                <input type="text" value={cardInfo.expiry} onChange={(e) => setCardInfo({ ...cardInfo, expiry: e.target.value })} required />
-                                <label>CVV:</label>
-                                <input type="text" value={cardInfo.cvv} onChange={(e) => setCardInfo({ ...cardInfo, cvv: e.target.value })} required />
-                            </div>
-                        )}
-                        {error && <p className="error">{error}</p>}
-                        <button type="submit" className="pay-button" disabled={loading}>{loading ? 'Processando...' : 'Pagar'}</button>
-                    </form>
-                </>
-            ) : (
-                <p>Carregando detalhes do plano...</p>
-            )}
-        </div>
+        <Container>
+            <Header />
+            <Content className="container-content content-spacing">
+                {error && <Message showIcon type="error">{error}</Message>}
+                <br />
+                <Panel header="Pagamento" bordered className="payment-panel">
+                    {plan ? (
+                        <>
+                            <p><strong>Plano escolhido:</strong> {plan.name} - R$ {plan.price}</p>
+                            <br />
+                            {subscriptionActive && daysRemaining !== null && (
+                                <Message showIcon type="warning">
+                                    <strong>Atenção!</strong> Você já tem uma assinatura ativa.
+                                    <br />Ela expira em <strong>{daysRemaining} {daysRemaining === 1 ? "dia" : "dias"}</strong>.
+                                    <br />Aguarde a expiração antes de contratar um novo plano.
+                                </Message>
+                            )}
+
+                            {!subscriptionActive && (
+                                <Form fluid onSubmit={handlePayment}>
+                                    <Form.Group controlId="payment-method">
+                                        <Form.ControlLabel>Método de Pagamento</Form.ControlLabel>
+                                        <SelectPicker
+                                            data={[
+                                                { label: 'Cartão de Crédito', value: 'credit_card' },
+                                                { label: 'Pix', value: 'pix' },
+                                                { label: 'Boleto', value: 'boleto' }
+                                            ]}
+                                            value={paymentMethod}
+                                            onChange={setPaymentMethod}
+                                            searchable={false}
+                                            block
+                                        />
+                                    </Form.Group>
+
+                                    {paymentMethod === 'credit_card' && (
+                                        <>
+                                            <Form.Group controlId="card-number">
+                                                <Form.ControlLabel>Número do Cartão</Form.ControlLabel>
+                                                <Form.Control
+                                                    name="cardNumber"
+                                                    value={cardInfo.cardNumber}
+                                                    onChange={value => setCardInfo({ ...cardInfo, cardNumber: value })}
+                                                    maxLength={16}
+                                                    placeholder="**** **** **** ****"
+                                                    required
+                                                />
+                                            </Form.Group>
+
+                                            <Form.Group controlId="expiry">
+                                                <Form.ControlLabel>Validade</Form.ControlLabel>
+                                                <Form.Control
+                                                    name="expiry"
+                                                    type="text"
+                                                    value={cardInfo.expiry}
+                                                    onChange={value => setCardInfo({ ...cardInfo, expiry: value })}
+                                                    maxLength={5}
+                                                    placeholder="MM/AA"
+                                                    required
+                                                />
+                                            </Form.Group>
+
+                                            <Form.Group controlId="cvv">
+                                                <Form.ControlLabel>CVV</Form.ControlLabel>
+                                                <Form.Control
+                                                    name="cvv"
+                                                    type="text"
+                                                    value={cardInfo.cvv}
+                                                    onChange={value => setCardInfo({ ...cardInfo, cvv: value })}
+                                                    maxLength={3}
+                                                    placeholder="***"
+                                                    required
+                                                />
+                                            </Form.Group>
+                                        </>
+                                    )}
+
+                                    <Form.Group>
+                                        <Button appearance="primary" type="submit" block disabled={loading || subscriptionActive}>
+                                            {loading ? <Loader size="xs" content="Processando..." /> : 'Pagar'}
+                                        </Button>
+                                    </Form.Group>
+                                </Form>
+                            )}
+
+                        </>
+                    ) : (
+                        <Loader size="lg" center content="Carregando detalhes do plano..." />
+                    )}
+                </Panel>
+            </Content>
+            <Footer>
+                <Rodape />
+            </Footer>
+        </Container>
     );
 }
 

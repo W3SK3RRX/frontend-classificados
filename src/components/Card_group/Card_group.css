@@ -1,4 +1,12 @@
 /* Card_group.css */
+.card-group-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
 
 /* Estilos para o card de grupo */
 .card-group-card {
@@ -66,12 +74,6 @@
     background-color: #c44636; /* Cor de fundo mais escura no hover */
     transform: translateY(-2px); /* Eleva o botão levemente */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Adiciona sombra ao botão */
-}
-
-/* Efeito de foco */
-.card-group-card-button:focus {
-    outline: none; /* Remove o contorno padrão */
-    box-shadow: 0 0 5px rgba(163, 13, 13, 0.7); /* Contorno verde para foco */
 }
 
 /* Responsividade - ajusta o tamanho do botão em telas menores */

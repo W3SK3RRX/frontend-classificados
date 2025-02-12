@@ -1,9 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CustomTabs from '../../components/CustomTabs/customtabs';
 import './profileSignup.css';
 
 function ProfileSignup() {
     const [profileType, setProfileType] = useState('liberal');
+    const [loading, setLoading] = useState(true);
+    const [temAssinatura, setTemAssinatura] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        async function verificarAssinatura() {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/subscriptions/subscription_status/", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("token")}` // Supondo que o token está salvo no localStorage
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.active) {
+                        setTemAssinatura(true); // Se tiver assinatura ativa
+                    } else {
+                        setTemAssinatura(false); // Se não tiver assinatura ativa
+                    }
+                } else {
+                    setTemAssinatura(false); // Se a resposta não for ok
+                }
+            } catch (error) {
+                console.error("Erro ao verificar assinatura:", error);
+                setTemAssinatura(false);
+            } finally {
+                setLoading(false); // Finaliza o carregamento
+            }
+        }
+
+        verificarAssinatura();
+    }, []);
+
+    useEffect(() => {
+        if (!loading) {
+            // Se a assinatura estiver ativa, continua no cadastro de perfil
+            if (!temAssinatura) {
+                // Caso contrário, redireciona para os planos
+                navigate("/planos");
+            }
+        }
+    }, [loading, temAssinatura, navigate]);
 
     const handleProfileTypeChange = (event) => {
         setProfileType(event.target.value);

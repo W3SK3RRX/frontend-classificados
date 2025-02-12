@@ -34,6 +34,7 @@ function Header() {
                     {user && <Link to="/home" className="nav-link">Início</Link>}
                     {user && <Link to="/contracts" className="nav-link">Meus Contratos</Link>}
                     {user && <Link to="/SearchFilters" className="nav-link">Busca Avançada</Link>}
+                    {user && <Link to="/criar-perfil" className="nav-link">Criar Anúncio</Link>}
                     
                     {user ? (
                         <div className="nav-link dropdown" ref={dropdownRef}>

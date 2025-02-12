@@ -12,6 +12,8 @@ import Sobre from './pages/Sobre/Sobre';
 import Home from './pages/home/index';
 import Login from './pages/login/login';
 import Signup from './pages/signup/signup';
+import VerificarAssinatura from './pages/Verifica-assinatura/verifica_assinatura';
+import Planos from './pages/planos/planos';
 import Payment from './pages/payments/payments';
 import ForgotPassword from './pages/forgotpassword/forgotpassword';
 import ProfileSignup from './pages/profilesignup/profilesignup';
@@ -29,8 +31,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/pagamento" element={<Payment />} />
-
+            
             {/* Rota protegida para Home */}
             <Route
               path="/home"
@@ -47,6 +48,36 @@ createRoot(document.getElementById('root')).render(
               element={
                 <PrivateRoute>
                   <SearchFilters />
+                </PrivateRoute>
+              }
+            />
+
+            {/* Rota protegida para verificar assinatura */}
+            <Route
+              path="/verificar-assinatura"
+              element={
+                <PrivateRoute>
+                  <VerificarAssinatura />
+                </PrivateRoute>
+              }
+            />
+
+            {/* Rota protegida para exibir os planos */}
+            <Route
+              path="/planos"
+              element={
+                <PrivateRoute>
+                  <Planos />
+                </PrivateRoute>
+              }
+            />
+
+            {/* Rota protegida para pagamentos */}
+            <Route
+              path="/pagamento"
+              element={
+                <PrivateRoute>
+                  <Payment />
                 </PrivateRoute>
               }
             />
